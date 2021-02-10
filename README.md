@@ -1,2 +1,2 @@
-# hashset
-Small golang string based hashset implementation
+# go-hashset
+A simple hashset implementation for string entries
