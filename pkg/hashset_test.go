@@ -24,6 +24,15 @@ func TestNew(t *testing.T) {
 	rq.Equal(nilSet.Size(), 0)
 }
 
+func TestClear(t *testing.T) {
+	rq := require.New(t)
+
+	set := hashset.NewStrHashset("val1", "val2")
+	set.Clear()
+
+	rq.Equal(set.Size(), 0)
+}
+
 func TestContains(t *testing.T) {
 	rq := require.New(t)
 	set := hashset.NewStrHashset("val1", "VaR2")
