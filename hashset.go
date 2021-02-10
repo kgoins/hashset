@@ -86,22 +86,24 @@ func (set StrHashset) Contains(val string) bool {
 }
 
 // ContainsSubstr returns true if any entry in the
-// set contains the given string entry
-func (set StrHashset) ContainsSubstr(substr string) bool {
-	for val := range set.values {
-		if strings.Contains(val, substr) {
-			return true
-		}
+// set contains the given string entry, with an
+// option to ignore case.
+func (set StrHashset) ContainsSubstr(substr string, ignoreCase ...bool) bool {
+	ignore := false
+	if ignoreCase != nil && len(ignoreCase) == 1 {
+		ignore = ignoreCase[0]
 	}
 
-	return false
-}
-
-func (set StrHashset) ContainsSubstrIgnoreCase(substr string) bool {
-	substr = strings.ToLower(substr)
+	if ignore {
+		substr = strings.ToLower(substr)
+	}
 
 	for val := range set.values {
-		if strings.Contains(strings.ToLower(val), substr) {
+		if ignore {
+			val = strings.ToLower(val)
+		}
+
+		if strings.Contains(val, substr) {
 			return true
 		}
 	}
