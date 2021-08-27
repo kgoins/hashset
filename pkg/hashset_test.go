@@ -51,3 +51,12 @@ func TestContainsSubstr(t *testing.T) {
 	rq.False(set.ContainsSubstr("var"))
 	rq.True(set.ContainsSubstr("var", true))
 }
+
+func TestRemove(t *testing.T) {
+	rq := require.New(t)
+
+	set := hashset.NewStrHashset("val1", "VaR2")
+	set.Remove("VaR2")
+
+	rq.False(set.Contains("VaR2"))
+}

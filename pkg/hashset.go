@@ -116,3 +116,9 @@ func (set StrHashset) ContainsSubstr(substr string, ignoreCase ...bool) bool {
 func (set *StrHashset) Clear() {
 	set.values = make(map[string]struct{})
 }
+
+// Remove removes a key from the set. Removing a non-existant
+// key does nothing.
+func (set *StrHashset) Remove(key string) {
+	delete(set.values, key)
+}
